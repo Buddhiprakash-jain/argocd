@@ -1,22 +1,24 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: myargocd
-  namespace: argocd
+  name: helmapp
+  namespace: helmapp
 spec:
   project: default
   source:
-    repoURL: https://github.com/Buddhiprakash-jain/argocd.git
+    repoURL: 'https://github.com/Buddhiprakash-jain/argocd.git'
+    path: flask_linux_cmd
     targetRevision: HEAD
-    path: dev
+    helm:
+      valueFiles:
+        - values.yaml
   destination:
-    server: https://kubernetes.default.svc
-    namespace: mydev
-
+    server: 'https://kubernetes.default.svc'
+    namespace: helmns
   syncPolicy:
-    syncOptions:
-      - CreateNamespace=true
     automated:
       prune: true
       selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
 

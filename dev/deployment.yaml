@@ -2,18 +2,18 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: myd
-  name: myd
+    app: newmyd
+  name: newmyd
   namespace: default
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: myd
+      app: newmyd
   template:
     metadata:
       labels:
-        app: myd
+        app: newmyd
     spec:
       containers:
       - image: vimal13/apache-webserver-php

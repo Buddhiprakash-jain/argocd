@@ -1,2 +1,2 @@
-replica_number: 5
+replica_number: 2
 deployment_name: myapp

@@ -4,7 +4,8 @@ pipeline {
     stages {
         stage('Hello') {
             steps {
-                echo 'Hello World'
+                sh 'date'
+		echo "Date printed"
             }
         }
     }

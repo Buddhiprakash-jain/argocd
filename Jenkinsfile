@@ -10,13 +10,13 @@ pipeline {
     stages {
         stage('Login') {
             steps {
-                sh 'sudo  docker login -u $CREDS_USR --password-stdin'
+                sh 'docker login -u $CREDS_USR -p $CREDS_PSW'
 	
             }
         }
 	stage('Build') {
             steps {
-                sh 'sudo docker build -t buddhi82/argocd:latest .'
+                sh 'docker build -t buddhi82/argocd:latest .'
 
             }
         }

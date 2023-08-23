@@ -10,7 +10,7 @@ pipeline {
     stages {
         stage('Login') {
             steps {
-                sh 'echo $CREDS_PSW | sudo -S docker login -u $CREDS_USR --password-stdin'
+                sh 'echo "$CREDS_PSW" | sudo -S docker login -u $CREDS_USR --password-stdin'
 	
             }
         }

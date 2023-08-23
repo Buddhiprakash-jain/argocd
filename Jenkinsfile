@@ -12,8 +12,8 @@ pipeline {
             steps {
 		sh 'echo "Username: $CREDS_USR"'
 		sh 'echo "Password: $CREDS_PSW"'
-                sh 'sudo docker login -u ${CREDS_USR}'
-		
+                sh 'sudo docker login -u $CREDS_USR:$CREDS_PSW'
+	
             }
         }
     }

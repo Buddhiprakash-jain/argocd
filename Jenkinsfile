@@ -10,11 +10,7 @@ pipeline {
     stages {
         stage('Hello') {
             steps {
-		sh 'whoami'
-		sh 'id'
-		sh 'pwd'
-		sh 'systemctl status docker'
-                sh 'docker login -u ${CREDS_USR} -p ${CREDS_PSW}'
+                sh 'sudo docker login -u ${CREDS_USR} -p ${CREDS_PSW}'
 		
             }
         }

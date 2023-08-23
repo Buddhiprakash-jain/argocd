@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Hello') {
             steps {
-                sh 'date'
+                sh 'ifconfig'
 		echo "Date printed"
             }
         }

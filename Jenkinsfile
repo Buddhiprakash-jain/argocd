@@ -19,12 +19,5 @@ pipeline {
             }
         }
 }}}
-	stage('Build') {
-            steps {
-                sh 'sudo docker build -t buddhi82/argocd:latest .'
 
-            }
-        }
-    }
-
-
+}

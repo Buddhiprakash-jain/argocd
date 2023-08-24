@@ -17,7 +17,8 @@ pipeline {
 			echo "${SECRET}" | sudo  docker logout
 			echo "${SECRET}" | sudo  docker build -t buddhi82/argocd:latest .
 			echo "${SECRET}" | sudo docker run -dit -p 80:80 buddhi82/argocd:latest
-			curl -s http://0.0.0.0:80
+			curl http://0.0.0.0:80 > out.txt
+			cat out.txt
 			echo "${SECRET}" | sudo docker rm -f `echo "${SECRET}" | sudo docker ps -a -q`'''
 
 }

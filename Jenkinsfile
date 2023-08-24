@@ -14,7 +14,7 @@ pipeline {
 			withCredentials([string(credentialsId: 'ubuntu_passwd', variable: 'SECRET')]){
                 sh '''
 			echo "${SECRET}"
-			echo "${SECRET}" | sudo -S docker login -u buddhi82 -p bpjain123'''
+			echo "${SECRET}" | sudo -S docker login -u $CREDS_USR -p $CREDS_PSW'''
 	
             }
         }

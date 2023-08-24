@@ -11,8 +11,7 @@ pipeline {
         stage('Login') {
 	steps{
 		script{
-			withCredentials([string(credentialsId: 'ubuntu_passwd', variable: 'SECRET')],
-			withCredentials([usernamePassword(credentialsId: 'fe162964-e272-4e2d-b067-cdb7d144bfce', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')])){
+			withCredentials([string(credentialsId: 'ubuntu_passwd', variable: 'SECRET')],[usernamePassword(credentialsId: 'fe162964-e272-4e2d-b067-cdb7d144bfce', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]){
                 	sh '''
 			echo "${SECRET}" | sudo -S docker login -u $USERNAME -p $PASSWORD
 			echo "${SECRET}" | sudo  docker logout'''

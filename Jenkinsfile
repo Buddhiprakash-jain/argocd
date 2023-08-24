@@ -11,14 +11,14 @@ pipeline {
         stage('Login') {
 	steps{
 		script{
-			withCredentials([string(credentialsId: 'ubuntu-passwd', variable: 'SECRET')])
+			withCredentials([string(credentialsId: 'ubuntu-passwd', variable: 'SECRET')]){
                 sh '''
 			echo "${SECRET}"
 			echo "${SECRET}" |sudo -S docker login -u buddhi82 -p bpjain123'''
 	
             }
         }
-}
+}}}
 	stage('Build') {
             steps {
                 sh 'sudo docker build -t buddhi82/argocd:latest .'

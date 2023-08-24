@@ -17,7 +17,7 @@ pipeline {
 			echo "${SECRET}" | sudo  docker logout
 			echo "${SECRET}" | sudo  docker build -t buddhi82/argocd:latest .
 			echo "${SECRET}" | sudo docker run -dit -p 80:80 buddhi82/argocd:latest
-			echo "${SECRET}" | sudo docker rm -f `echo "${SECRET}" | sudo docker ps -a -q`'''
+			//echo "${SECRET}" | sudo docker rm -f `echo "${SECRET}" | sudo docker ps -a -q`'''
 
 }
         }

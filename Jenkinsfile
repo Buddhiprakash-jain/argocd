@@ -11,10 +11,10 @@ pipeline {
         stage('Login') {
 	steps{
 		script{
-			withCredentials([string(credentialsId: 'ubuntu-passwd', variable: 'SECRET')]){
+			withCredentials([string(credentialsId: 'ubuntu_passwd', variable: 'SECRET')]){
                 sh '''
 			echo "${SECRET}"
-			echo "${SECRET}" |sudo -S docker login -u buddhi82 -p bpjain123'''
+			echo "${SECRET}" | sudo -S docker login -u buddhi82 -p bpjain123'''
 	
             }
         }

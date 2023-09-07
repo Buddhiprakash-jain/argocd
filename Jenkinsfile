@@ -1,9 +1,5 @@
 pipeline {
-    agent {
-	node{
-	label 'ubuntu'
-}
-}
+    agent any
   //  environment{
 //	CREDS = credentials('fe162964-e272-4e2d-b067-cdb7d144bfce')
 //}

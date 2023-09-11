@@ -8,11 +8,15 @@ pipeline {
     stages {
         stage('Login') {
 	steps{
+		script{
+                        withCredentials([string(credentialsId: 'ubuntu_passwd', variable: 'SECRET')]){
 		sh '''
-  		echo "ubuntu" | sudo -S docker ps
-		echo "ubuntu" | sudo -S docker images'''
+  		echo "${SECRET}" | sudo -S docker ps
+		echo "${SECRET}" | sudo -S docker images'''
 }
 }
 }
 
+}
+    }
 }

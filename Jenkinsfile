@@ -9,8 +9,8 @@ pipeline {
         stage('Login') {
 	steps{
 		sh '''
-  		sudo docker ps
-		sudo docker images'''
+  		echo "ubuntu" | sudo docker ps
+		echo "ubuntu" | sudo docker images'''
 }
 }
 }

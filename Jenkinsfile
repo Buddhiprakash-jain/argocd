@@ -15,8 +15,8 @@ pipeline {
                 	sh '''
 			   // echo "${SECRET}" | sudo date
 			   // echo "${SECRET}" | sudo ifconfig
-			date
-			ifconfig
+			sudo date
+			sudo ifconfig
 			 // echo "${SECRET}" | sudo -S docker login -u $USERNAME -p $PASSWORD
 			 // echo "${SECRET}" | sudo  docker logout
 			 // echo "${SECRET}" | sudo  docker build -t buddhi82/argocd:latest .

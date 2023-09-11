@@ -8,7 +8,9 @@ pipeline {
     stages {
         stage('Login') {
 	steps{
-		sh 'date'
+		sh '''
+  		date
+		ifconfig'''
 }
 }
 }

@@ -11,7 +11,7 @@ pipeline {
 		script{
                         withCredentials([string(credentialsId: 'ubuntu_passwd', variable: 'SECRET')]){
 		sh '''
-  		echo "${SECRET}" | sudo -S docker ps
+  		echo "${SECRET}" | sudo -S docker login -u buddhi82 -p Buddhi8290@
 		echo "${SECRET}" | sudo -S docker images'''
 }
 }

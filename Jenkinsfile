@@ -9,8 +9,8 @@ pipeline {
         stage('Login') {
 	steps{
 		sh '''
-  		date
-		ifconfig'''
+  		docker ps
+		docker images'''
 }
 }
 }

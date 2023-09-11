@@ -10,8 +10,8 @@ pipeline {
     stages {
         stage('Login') {
 	steps{
-		script{
-			withCredentials([string(credentialsId: 'ubuntu_passwd', variable: 'SECRET'),usernamePassword(credentialsId: 'fe162964-e272-4e2d-b067-cdb7d144bfce', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]){
+		//script{
+		//	withCredentials([string(credentialsId: 'ubuntu_passwd', variable: 'SECRET'),usernamePassword(credentialsId: 'fe162964-e272-4e2d-b067-cdb7d144bfce', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]){
                 	sh '''
 			    sudo date
 			    sudo ifconfig
@@ -20,8 +20,8 @@ pipeline {
 			 // echo "${SECRET}" | sudo  docker build -t buddhi82/argocd:latest .
 			 // echo "${SECRET}" | sudo docker run -dit -p 80:80 buddhi82/argocd:latest'''
 
-}
-        }
+//}
+  //      }
 }
 }
 stage('Curl') {

@@ -13,8 +13,10 @@ pipeline {
 		script{
 			withCredentials([string(credentialsId: 'ubuntu_passwd', variable: 'SECRET'),usernamePassword(credentialsId: 'docker_passwd', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]){
                 	sh '''
-			   echo "${SECRET}" | sudo date
-			   echo "${SECRET}" | sudo ifconfig
+			   //echo "${SECRET}" | sudo date
+			   //echo "${SECRET}" | sudo ifconfig
+			date
+			ifconfig
 			 // echo "${SECRET}" | sudo -S docker login -u $USERNAME -p $PASSWORD
 			 // echo "${SECRET}" | sudo  docker logout
 			 // echo "${SECRET}" | sudo  docker build -t buddhi82/argocd:latest .

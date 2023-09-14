@@ -1,3 +1,3 @@
-FROM buddhi82/webserver:v1
+FROM buddhi82/k8s-webserver:latest
 
 COPY index.html /var/www/html

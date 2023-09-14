@@ -1,3 +1,5 @@
-FROM buddhi82/k8s-webserver:latest
+FROM buddhi82/webserver:latest
+
+EXPOSE 80
 
 COPY index.html /var/www/html

@@ -1,4 +1,4 @@
-FROM buddhi82/webserver:latest
+FROM buddhi82/webserver:v1
 
 EXPOSE 80
 

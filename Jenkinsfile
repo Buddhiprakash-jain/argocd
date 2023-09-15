@@ -15,7 +15,7 @@ pipeline {
   		echo "${SECRET}" | sudo -S docker login -u $USERNAME -p $PASSWORD
 		echo "${SECRET}" | sudo  -S docker push buddhi82/argocd:v5
 		echo "${SECRET}" | sudo  -S docker logout
-		'''
+		echo "${SECRET}" | sudo -S kubectl port-forward svc/myapp -n helmns 8082:80 &'''
 }
 }
 }

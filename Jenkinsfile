@@ -18,7 +18,7 @@ pipeline {
 		echo "${SECRET}" | sudo -S argocd login localhost:8081 --username admin --password rL0eKRaGRs666A7G --insecure
 		echo "${SECRET}" | sudo  -S argocd app sync helmapp
 		echo "${SECRET}" | sudo  -S argocd logout localhost:8081
-		echo "${SECRET}" | sudo -S sleep 10
+		echo "${SECRET}" | sudo -S sleep 15
 		echo "${SECRET}" | sudo -S pkill -f "helmns"
 		echo "${SECRET}" | sudo -S kubectl port-forward svc/myapp -n helmns 8082:80 &
 		'''

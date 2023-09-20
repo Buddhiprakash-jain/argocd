@@ -13,10 +13,8 @@ pipeline {
 		sh '''
   		echo "${SECRET}" | sudo  -S docker build -t buddhi82/argocd:v26 .
     		// echo "${SECRET}" | sudo  -S echo -e '\n' | docker login &> checklogin.txt
-		def loginCheck = """
-                    echo "${SECRET}" | sudo  -S echo -e '\n' | docker login &> checklogin.txt
-                    """
-                    sh loginCheck
+		def loginCheck = "echo \"\${SECRET}\" | sudo  -S echo -e '\n' | docker login &> checklogin.txt"
+                sh (loginCheck)
 		def loginStatus = sh(script: "echo \"\${SECRET}\" | sudo -S diff login.txt checklogin.txt &> /dev/null; echo \$?", returnStatus: true).trim()
                 if (loginStatus == '0') {
                         echo 'Already logged in'

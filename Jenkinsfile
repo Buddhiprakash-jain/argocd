@@ -14,6 +14,7 @@ pipeline {
   		echo "${SECRET}" | sudo  -S docker build -t buddhi82/argocd:v26 .
 		// echo "${SECRET}" | sudo  -S check=$(echo "${SECRET}" | sudo  -S docker info | grep -E 'Username|Registry')
 		def check = sh(script: "echo \"\${SECRET}\" | docker info | grep -E 'Username|Registry'", returnStdout: true).trim()
+  		echo "${SECRET}" | sudo  -S echo $check
 		if (check.isEmpty()) {
                         echo "${SECRET}" | sudo  -S echo 'Login Required'
                     } else {

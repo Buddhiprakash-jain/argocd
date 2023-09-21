@@ -15,7 +15,7 @@ pipeline {
                     """
 		    def SECRET = "${SECRET}"
 		    withEnv(["SECRET=${SECRET}"]){
-                    def check = sh(script: "echo $SECRET | sudo -S docker info | grep -E 'Username|Registry'", returnStatus: true, returnStdout: true).trim()
+                    def check = sh(script: "echo $SECRET | sudo -S docker info | grep -E 'Username|Registry'", returnStatus: true, returnStdout: true)
                     sh("echo $SECRET | sudo -S echo 'Check Output: ${check}'")
 		    }
                     if (check.isEmpty()) {

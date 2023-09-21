@@ -16,10 +16,10 @@ pipeline {
 		    def SECRET = "${SECRET}"
 		    withEnv(["SECRET=${SECRET}"]){
                     def check = sh(script: "echo $SECRET | sudo -S docker info | sudo -S grep -E 'Username|Registry'", returnStatus: true, returnStdout: true).trim()
+                    sh """ 
+		    echo $SECRET | sudo -S echo "Check Output: ${check}"
+		     """
 		    }
-                  // sh """ 
-		   // echo "${SECRET}" | sudo -S echo "Check Output: ${check}"
-			// """
                     if (check.isEmpty()) {
                         echo "${SECRET}" | sudo -S echo 'Login Required'
                         // Uncomment and replace with actual login command

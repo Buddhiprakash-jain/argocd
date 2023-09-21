@@ -13,11 +13,13 @@ pipeline {
 		sh '''
   		echo "${SECRET}" | sudo  -S docker build -t buddhi82/argocd:v26 .
 		def check = sh(script: "echo \"\${SECRET}\" | sudo -S docker info | grep -E 'Username|Registry'", returnStdout: true).trim()
-		// if (check.isEmpty()) {
-                   //     echo "${SECRET}" | sudo  -S echo 'Login Required'
-                // } else {
-                  //      echo "${SECRET}" | sudo  -S echo 'Already Login'
-                    // }
+		if (check.isEmpty()) {
+                        echo "${SECRET}" | sudo  -S echo 'check is empty'
+                        echo "${SECRET}" | sudo  -S echo 'Login Required'
+                    } else {
+                        echo "${SECRET}" | sudo  -S echo 'check is NOT empty'
+                        echo "${SECRET}" | sudo  -S echo 'Already Login'
+                    }
 		// echo "${SECRET}" | sudo -S docker login -u $USERNAME -p $PASSWORD
 		echo "${SECRET}" | sudo  -S docker push buddhi82/argocd:v26
 		echo "${SECRET}" | sudo -S docker logout

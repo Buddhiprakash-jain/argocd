@@ -18,13 +18,12 @@ pipeline {
                     def check = sh(script: "echo $SECRET | sudo -S docker info | grep -E 'Username|Registry'", returnStatus: true, returnStdout: true)
                     sh("echo $SECRET | sudo -S echo 'Check Output: ${check}'")
 		    }
-                    if (check == '1') {
+                    if [ check -eq '1'] then;
                         echo "${SECRET}" | sudo -S echo 'Login Required'
                         // sh "echo "${SECRET}" | sudo -S docker login -u \$USERNAME -p \$PASSWORD"
-                    } 
-		    else {
+		    else 
                         echo "${SECRET}" | sudo -S echo 'Already Login'
-                    }
+                    fi
 
                     sh """
                     echo "${SECRET}" | sudo -S docker push buddhi82/argocd:v26

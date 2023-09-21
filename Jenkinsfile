@@ -13,7 +13,7 @@ pipeline {
 		sh """
                     echo "${SECRET}" | sudo -S docker build -t buddhi82/argocd:v26 .
                     """
-                    def check = sh(script: "echo "${SECRET}" | docker info | grep -E 'Username|Registry'", returnStatus: true, returnStdout: true).trim()
+                    def check = sh(script: "echo '${SECRET}' | docker info | grep -E 'Username|Registry'", returnStatus: true, returnStdout: true).trim()
                     echo "Check Output: ${check}"
 
                     if (check.isEmpty()) {

@@ -12,7 +12,6 @@ pipeline {
                         withCredentials([string(credentialsId: 'ubuntu_passwd', variable: 'SECRET'),usernamePassword(credentialsId: 'docker_passwd', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]){
 		sh '''
   		echo "${SECRET}" | sudo  -S docker build -t buddhi82/argocd:v26 .
-		// echo "${SECRET}" | sudo  -S check=$(echo "${SECRET}" | sudo  -S docker info | grep -E 'Username|Registry')
 		def check = sh(script: "echo \"\${SECRET}\" | docker info | grep -E 'Username|Registry'", returnStdout: true).trim()
 		if (check.isEmpty()) {
                         echo "${SECRET}" | sudo  -S echo 'Login Required'

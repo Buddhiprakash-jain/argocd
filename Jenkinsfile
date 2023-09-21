@@ -13,6 +13,7 @@ pipeline {
 		sh """
                     echo "${SECRET}" | sudo -S docker build -t buddhi82/argocd:v26 .
                     """
+		    def SECRET
 		    withEnv(["SECRET=${SECRET}"])
                     def check = sh(script: "echo $SECRET | sudo -S docker info | sudo -S grep -E 'Username|Registry'", returnStatus: true, returnStdout: true).trim()
                   // sh """ 

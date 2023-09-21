@@ -12,15 +12,8 @@ pipeline {
                         withCredentials([string(credentialsId: 'ubuntu_passwd', variable: 'SECRET'),usernamePassword(credentialsId: 'docker_passwd', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]){
 		sh '''
   		echo "${SECRET}" | sudo  -S docker build -t buddhi82/argocd:v26 .
-		echo "${SECRET}" | sudo  -S echo -e '\n' | sudo  -S docker login &> checklogin.txt
-		def loginStatus = sh(script: "echo \"\${SECRET}\" | sudo -S diff login.txt checklogin.txt &> /dev/null; echo \$?", returnStatus: true).trim()
-                if (loginStatus == '0') {
-                        echo 'Already logged in'
-                			} 
-		else {
-                        def loginCmd = "echo \"\${SECRET}\" | sudo -S docker login -u \$USERNAME -p \$PASSWORD"
-                        sh(loginCmd)
-                     }
+		//echo "${SECRET}" | sudo  -S echo -e '\n' | sudo  -S docker login &> checklogin.txt
+		echo "${SECRET}" | sudo -S docker login -u $USERNAME -p $PASSWORD"
 		echo "${SECRET}" | sudo  -S docker push buddhi82/argocd:v26
 		echo "${SECRET}" | sudo -S argocd login localhost:8081 --username admin --password rL0eKRaGRs666A7G --insecure
 		echo "${SECRET}" | sudo  -S argocd app sync helmapp

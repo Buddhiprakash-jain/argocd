@@ -13,7 +13,11 @@ pipeline {
 		sh '''
   		echo "${SECRET}" | sudo  -S docker build -t buddhi82/argocd:v26 .
 		echo "${SECRET}" | sudo  -S check=$(docker info | grep -E 'Username|Registry')
-		echo "${SECRET}" | sudo  -S if [ -z "$check" ]; then       echo "\check is empty"; else       echo "\check is NOT empty"; fi
+		if (check.isEmpty()) {
+                        echo "${SECRET}" | sudo  -S echo 'check is empty'
+                    } else {
+                        echo "${SECRET}" | sudo  -S echo 'check is NOT empty'
+                    }
 		// echo "${SECRET}" | sudo -S docker login -u $USERNAME -p $PASSWORD
 		echo "${SECRET}" | sudo  -S docker push buddhi82/argocd:v26
 		echo "${SECRET}" | sudo -S docker logout

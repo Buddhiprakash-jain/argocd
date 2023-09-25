@@ -17,7 +17,7 @@ pipeline {
 		    withEnv(["SECRET=${SECRET}"]){
 
 	            // Build the docker images
-		    sh "echo $SECRET | sudo -S docker build -t buddhi82/argocd:v28 ."
+		    sh "echo $SECRET | sudo -S docker build -t buddhi82/argocd:v29 ."
 
 		    // checking the docker login or not and store the output in the check variable
                     def check = sh(script: "echo $SECRET | sudo -S docker info | grep -E 'Username|Registry'", returnStatus: true, returnStdout: true)
@@ -33,7 +33,7 @@ pipeline {
 		         }
 		    
                     // Pushing the docker image to Docker Hub
-                    sh "echo $SECRET | sudo -S docker push buddhi82/argocd:v28"
+                    sh "echo $SECRET | sudo -S docker push buddhi82/argocd:v29"
 		    
 		    // checking the docker login or not and store the output in the check variable
 		    def checkargocd = sh(script: "echo $SECRET | sudo -S argocd repocreds list", returnStatus: true, returnStdout: true)
@@ -47,12 +47,12 @@ pipeline {
 			 sh "echo Login Successfully!!"
 		         }
 
-                    sh "echo $SECRET | sudo -S argocd app sync helmapp"
-			
-                    // echo "${SECRET}" | sudo -S sleep 15
-                    // echo "${SECRET}" | sudo -S pkill -f "helmns"
-                    // echo "${SECRET}" | sudo -S kubectl port-forward svc/myapp -n helmns 8082:80 &
-                    // """
+                    sh """
+		       echo $SECRET | sudo -S argocd app sync helmapp"
+                       echo $SECRET | sudo -S sleep 15
+                       echo $SECRET | sudo -S pkill -f "helmns"
+                       echo $SECRET | sudo -S kubectl port-forward svc/myapp -n helmns 8082:80 &
+                    """
 }
 }
 }

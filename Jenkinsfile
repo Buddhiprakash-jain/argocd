@@ -47,7 +47,7 @@ pipeline {
 			 sh "echo Login Successfully!!"
 		         }
 
-                    sh "echo $SECRET | sudo -S argocd app sync helmapp
+                    sh "echo $SECRET | sudo -S argocd app sync helmapp"
 			
                     // echo "${SECRET}" | sudo -S sleep 15
                     // echo "${SECRET}" | sudo -S pkill -f "helmns"

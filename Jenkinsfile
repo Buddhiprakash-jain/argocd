@@ -17,16 +17,17 @@ pipeline {
 		    withEnv(["SECRET=${SECRET}"]){
                     def check = sh(script: "echo $SECRET | sudo -S docker info | grep -E 'Username|Registry'", returnStatus: true, returnStdout: true)
                     sh("echo $SECRET | sudo -S echo 'Check Output: ${check}'")
-		    }
+		    
 		     sh """
                      if  (check == 1) {
-                        echo "${SECRET}" | sudo -S echo 'Login Required'
-                     //    sh "echo "${SECRET}" | sudo -S docker login -u \$USERNAME -p \$PASSWORD"
+                        echo $SECRET | sudo -S echo 'Login Required'
+                     //    sh "echo $SECRET | sudo -S docker login -u \$USERNAME -p \$PASSWORD"
 		     } 
 		    else{
-                         echo "${SECRET}" | sudo -S echo 'Already Login'
+                         echo $SECRET | sudo -S echo 'Already Login'
 		    }
       	            """
+		    }
                     // sh """
                     // echo "${SECRET}" | sudo -S docker push buddhi82/argocd:v26
                     // echo "${SECRET}" | sudo -S docker logout

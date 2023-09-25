@@ -33,7 +33,7 @@ pipeline {
 		         }
 		    
                     // Pushing the docker image to Docker Hub
-                    sh "echo $SECRET | sudo -S docker push buddhi82/argocd:v26"
+                    sh "echo $SECRET | sudo -S docker push buddhi82/argocd:v28"
 		    
 		    // checking the docker login or not and store the output in the check variable
 		    def checkargocd = sh(script: "echo $SECRET | sudo -S argocd repocreds list", returnStatus: true, returnStdout: true)

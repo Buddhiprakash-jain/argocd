@@ -31,7 +31,7 @@ pipeline {
 		         }
 		    
                     // Pushing the docker image to Docker Hub
-                    sh "echo $SECRET | sudo -S docker push buddhi82/argocd:v26
+                    sh "echo $SECRET | sudo -S docker push buddhi82/argocd:v26"
 		    
                     // echo "${SECRET}" | sudo -S argocd login localhost:8081 --username admin --password rL0eKRaGRs666A7G --insecure
                     // echo "${SECRET}" | sudo -S argocd app sync helmapp

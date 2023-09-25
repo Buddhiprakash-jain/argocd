@@ -21,7 +21,7 @@ pipeline {
 		
                      if(check == 1) {
                         sh "echo $SECRET | sudo -S docker login -u $USERNAME -p $PASSWORD"
-			sh "Login Successfully!!"
+			sh "echo Login Successfully!!"
 		     } 
 		    else{
                          sh "echo Already Login"

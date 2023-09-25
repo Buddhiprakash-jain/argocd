@@ -17,7 +17,7 @@ pipeline {
 		    withEnv(["SECRET=${SECRET}"]){
 
 	            // Build the docker images
-		    sh "echo $SECRET | sudo -S docker build -t buddhi82/argocd:v29 ."
+		    sh "echo $SECRET | sudo -S docker build -t buddhi82/argocd:v30 ."
 
 		    // checking the docker login or not and store the output in the check variable
                     def check = sh(script: "echo $SECRET | sudo -S docker info | grep -E 'Username|Registry'", returnStatus: true, returnStdout: true)
@@ -33,7 +33,7 @@ pipeline {
 		         }
 		    
                     // Pushing the docker image to Docker Hub
-                    sh "echo $SECRET | sudo -S docker push buddhi82/argocd:v29"
+                    sh "echo $SECRET | sudo -S docker push buddhi82/argocd:v30"
 		    
 		    // checking the docker login or not and store the output in the check variable
 		    def checkargocd = sh(script: "echo $SECRET | sudo -S argocd repocreds list", returnStatus: true, returnStdout: true)

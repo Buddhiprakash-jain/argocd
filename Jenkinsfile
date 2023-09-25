@@ -18,23 +18,23 @@ pipeline {
                     def check = sh(script: "echo $SECRET | sudo -S docker info | grep -E 'Username|Registry'", returnStatus: true, returnStdout: true)
                     sh("echo $SECRET | sudo -S echo 'Check Output: ${check}'")
 		    }
-                    // if [ check -eq '1'] then;
-                       // echo "${SECRET}" | sudo -S echo 'Login Required'
-                        // sh "echo "${SECRET}" | sudo -S docker login -u \$USERNAME -p \$PASSWORD"
-		    // else 
-                       //  echo "${SECRET}" | sudo -S echo 'Already Login'
-                    // fi
+                     if [ ${check} -eq '1'] then;
+                        echo "${SECRET}" | sudo -S echo 'Login Required'
+                     //    sh "echo "${SECRET}" | sudo -S docker login -u \$USERNAME -p \$PASSWORD"
+		     else 
+                         echo "${SECRET}" | sudo -S echo 'Already Login'
+                     fi
 
-                    sh """
-                    echo "${SECRET}" | sudo -S docker push buddhi82/argocd:v26
-                    echo "${SECRET}" | sudo -S docker logout
-                    echo "${SECRET}" | sudo -S argocd login localhost:8081 --username admin --password rL0eKRaGRs666A7G --insecure
-                    echo "${SECRET}" | sudo -S argocd app sync helmapp
-                    echo "${SECRET}" | sudo -S argocd logout localhost:8081
-                    echo "${SECRET}" | sudo -S sleep 15
-                    echo "${SECRET}" | sudo -S pkill -f "helmns"
-                    echo "${SECRET}" | sudo -S kubectl port-forward svc/myapp -n helmns 8082:80 &
-                    """
+                    // sh """
+                    // echo "${SECRET}" | sudo -S docker push buddhi82/argocd:v26
+                    // echo "${SECRET}" | sudo -S docker logout
+                    // echo "${SECRET}" | sudo -S argocd login localhost:8081 --username admin --password rL0eKRaGRs666A7G --insecure
+                    // echo "${SECRET}" | sudo -S argocd app sync helmapp
+                    // echo "${SECRET}" | sudo -S argocd logout localhost:8081
+                    // echo "${SECRET}" | sudo -S sleep 15
+                    // echo "${SECRET}" | sudo -S pkill -f "helmns"
+                    // echo "${SECRET}" | sudo -S kubectl port-forward svc/myapp -n helmns 8082:80 &
+                    // """
 }
 }
 }

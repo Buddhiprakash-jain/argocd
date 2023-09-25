@@ -19,7 +19,7 @@ pipeline {
                     sh("echo $SECRET | sudo -S echo 'Check Output: ${check}'")
 		    
 		
-                     if(check == '1') {
+                     if(check == 1) {
                         sh "echo Login Required"
                      //    sh "echo $SECRET | sudo -S docker login -u \$USERNAME -p \$PASSWORD"
 		     } 

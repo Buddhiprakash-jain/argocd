@@ -1,3 +1,4 @@
+
 pipeline {
     agent {
         node{
@@ -10,7 +11,8 @@ pipeline {
 	steps{
 		script{
 			// define the credentials variables 
-                        withCredentials([string(credentialsId: 'ubuntu_passwd', variable: 'SECRET'),usernamePassword(credentialsId: 'docker_passwd', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]){
+                        withCredentials([string(credentialsId: 'ubuntu_passwd', variable: 'SECRET'),usernamePassword(credentialsId: 'docker_passwd', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD'),
+					 usernamePassword(credentialsId: 'argocd_passwd', usernameVariable: 'USERNAMEARGO', passwordVariable: 'PASSWORDARGO')]){
 		    def SECRET = "${SECRET}"
 		    withEnv(["SECRET=${SECRET}"]){
 
@@ -33,6 +35,7 @@ pipeline {
                     // Pushing the docker image to Docker Hub
                     sh "echo $SECRET | sudo -S docker push buddhi82/argocd:v26"
 		    
+		    // checking the docker login or not and store the output in the check variable
 		    def checkargocd = sh(script: "echo $SECRET | sudo -S argocd repocreds list", returnStatus: true, returnStdout: true)
                     sh "echo $SECRET | sudo -S echo 'Check Output: ${checkargocd}'"
 		    
@@ -40,11 +43,12 @@ pipeline {
 			sh "echo Already Login"
 		     } 
 		     else{
-                         sh "echo $SECRET | sudo -S argocd login localhost:8081 --username admin --password rL0eKRaGRs666A7G --insecure"
+                         sh "echo $SECRET | sudo -S argocd login localhost:8081 --username $USERNAMEARGO --password $PASSWORDARGO --insecure"
 			 sh "echo Login Successfully!!"
 		         }
-                    // echo "${SECRET}" | sudo -S argocd app sync helmapp
-                    // echo "${SECRET}" | sudo -S argocd logout localhost:8081
+
+                    sh "echo $SECRET | sudo -S argocd app sync helmapp
+			
                     // echo "${SECRET}" | sudo -S sleep 15
                     // echo "${SECRET}" | sudo -S pkill -f "helmns"
                     // echo "${SECRET}" | sudo -S kubectl port-forward svc/myapp -n helmns 8082:80 &

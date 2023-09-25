@@ -33,6 +33,8 @@ pipeline {
                     // Pushing the docker image to Docker Hub
                     sh "echo $SECRET | sudo -S docker push buddhi82/argocd:v26"
 		    
+		    def checkargocd = sh(script: "echo $SECRET | sudo -S argocd repocreds list", returnStatus: true, returnStdout: true)
+                    sh "echo $SECRET | sudo -S echo 'Check Output: ${checkargocd}'"
                     // echo "${SECRET}" | sudo -S argocd login localhost:8081 --username admin --password rL0eKRaGRs666A7G --insecure
                     // echo "${SECRET}" | sudo -S argocd app sync helmapp
                     // echo "${SECRET}" | sudo -S argocd logout localhost:8081

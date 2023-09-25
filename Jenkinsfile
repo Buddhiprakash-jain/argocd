@@ -20,11 +20,11 @@ pipeline {
 		    
 		
                      if  (${check} == 1) {
-                        echo "${SECRET}" | sudo -S echo "Login Required"
+                        sh "echo Login Required"
                      //    sh "echo $SECRET | sudo -S docker login -u \$USERNAME -p \$PASSWORD"
 		     } 
 		    else{
-                         echo "${SECRET}" | sudo -S echo "Already Login"		    
+                         sh "echo Already Login"
 		}
 		    }
                     // sh """

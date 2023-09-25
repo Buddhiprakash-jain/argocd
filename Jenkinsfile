@@ -17,7 +17,7 @@ pipeline {
 		    withEnv(["SECRET=${SECRET}"]){
 
 	            // Build the docker images
-		    sh "echo $SECRET | sudo -S docker build -t buddhi82/argocd:v26 ."
+		    sh "echo $SECRET | sudo -S docker build -t buddhi82/argocd:v28 ."
 
 		    // checking the docker login or not and store the output in the check variable
                     def check = sh(script: "echo $SECRET | sudo -S docker info | grep -E 'Username|Registry'", returnStatus: true, returnStdout: true)
